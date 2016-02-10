@@ -79,6 +79,22 @@ typedef NS_ENUM(NSUInteger, CMMapApp) {
 + (BOOL)launchMapApp:(CMMapApp)mapApp
      forDirectionsTo:(CMMapPoint *)end;
 
+
+/**
+ Launches the specified mapping application with directions
+ from the user's current location to the specified endpoint
+ and using the specified transport mode.
+ 
+ @param mapApp An enumeration value identifying a mapping application.
+ @param end The destination of the desired directions.
+ @param directionsMode transport mode to use when getting directions.
+ 
+ @return YES if the mapping app could be launched, NO otherwise.
+ */
++ (BOOL)launchMapApp:(CMMapApp)mapApp
+     forDirectionsTo:(CMMapPoint *)end
+      directionsMode:(NSString *)directionsMode;
+
 /**
  Launches the specified mapping application with directions
  between the two specified endpoints.
@@ -92,6 +108,24 @@ typedef NS_ENUM(NSUInteger, CMMapApp) {
 + (BOOL)launchMapApp:(CMMapApp)mapApp
    forDirectionsFrom:(CMMapPoint *)start
                   to:(CMMapPoint *)end;
+
+/**
+ Launches the specified mapping application with directions
+ between the two specified endpoints
+ and using the specified transport mode.
+ 
+ @param mapApp An enumeration value identifying a mapping application.
+ @param start The starting point of the desired directions.
+ @param end The destination of the desired directions.
+ @param directionsMode transport mode to use when getting directions.
+ 
+ @return YES if the mapping app could be launched, NO otherwise.
+ */
+ @return YES if the mapping app could be launched, NO otherwise.
++ (BOOL)launchMapApp:(CMMapApp)mapApp
+   forDirectionsFrom:(CMMapPoint *)start
+                  to:(CMMapPoint *)end
+      directionsMode:(NSString *)directionsMode;
 
 @end
 
