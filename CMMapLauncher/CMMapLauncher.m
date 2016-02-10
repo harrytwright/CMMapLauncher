@@ -54,6 +54,10 @@
 
         case CMMapAppUber:
             return @"uber://";
+            
+        case CMMapAppTomTom:
+            return @"tomtomhome://";
+        
 
         default:
             return nil;
@@ -192,6 +196,10 @@
         } else {
             url = [NSString stringWithFormat:@"uber://?action=setPickup&pickup[latitude]=%f&pickup[longitude]=%f&dropoff[latitude]=%f&dropoff[longitude]=%f&dropoff[nickname]=%@", start.coordinate.latitude, start.coordinate.longitude, end.coordinate.latitude, end.coordinate.longitude, [end.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
+        return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    } else if (mapApp == CMMapAppTomTom) {
+        NSString *url = nil;
+        url = [NSString stringWithFormat:@"tomtomhome:geo:action=navigateto&lat=%f&long=%f&name=%@", end.coordinate.latitude, end.coordinate.longitude, [end.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
     return NO;
