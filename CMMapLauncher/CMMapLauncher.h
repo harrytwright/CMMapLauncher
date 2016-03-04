@@ -121,7 +121,6 @@ typedef NS_ENUM(NSUInteger, CMMapApp) {
  
  @return YES if the mapping app could be launched, NO otherwise.
  */
- @return YES if the mapping app could be launched, NO otherwise.
 + (BOOL)launchMapApp:(CMMapApp)mapApp
    forDirectionsFrom:(CMMapPoint *)start
                   to:(CMMapPoint *)end
@@ -159,7 +158,7 @@ typedef NS_ENUM(NSUInteger, CMMapApp) {
 /**
  Gives an MKMapItem corresponding to this map point object.
  */
-@property (nonatomic, readonly) MKMapItem *MKMapItem;
+@property (nonatomic, retain) MKMapItem *MKMapItem;
 
 /**
  Creates a new CMMapPoint that signifies the current location.
@@ -200,6 +199,12 @@ typedef NS_ENUM(NSUInteger, CMMapApp) {
  @param coordinate The geographical coordinate of the new map point.
  */
 + (CMMapPoint *)mapPointWithAddress:(NSString *)address
+                         coordinate:(CLLocationCoordinate2D)coordinate;
+
+
++ (CMMapPoint *)mapPointWithMapItem:(MKMapItem *)mapItem
+                               name:(NSString *)name
+                            address:(NSString *)address
                          coordinate:(CLLocationCoordinate2D)coordinate;
 
 @end

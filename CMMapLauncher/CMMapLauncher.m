@@ -123,7 +123,8 @@
 
 + (BOOL)launchMapApp:(CMMapApp)mapApp
    forDirectionsFrom:(CMMapPoint *)start
-                  to:(CMMapPoint *)end {
+                  to:(CMMapPoint *)end
+      directionsMode:(NSString *)directionsMode{
     if (![CMMapLauncher isMapAppInstalled:mapApp]) {
         return NO;
     }
@@ -132,6 +133,7 @@
         // Check for iOS 6
         Class mapItemClass = [MKMapItem class];
         if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
+            NSDictionary *launchOptions;
             NSSet *allowedDirectionsModes = [NSSet setWithArray:@[MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsDirectionsModeWalking]];
             if (directionsMode && [allowedDirectionsModes containsObject:directionsMode]) {
                 launchOptions = @{MKLaunchOptionsDirectionsModeKey: directionsMode};
@@ -290,6 +292,18 @@
     MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:placemark];
     item.name = self.name;
     return item;
+}
+
++ (CMMapPoint *)mapPointWithMapItem:(MKMapItem *)mapItem
+                               name:(NSString *)name
+                            address:(NSString *)address
+                         coordinate:(CLLocationCoordinate2D)coordinate{
+    CMMapPoint *mapPoint = [[CMMapPoint alloc] init];
+    mapPoint.MKMapItem = mapItem;
+    mapPoint.name = name;
+    mapPoint.address = address;
+    mapPoint.coordinate = coordinate;
+    return mapPoint;
 }
 
 @end
