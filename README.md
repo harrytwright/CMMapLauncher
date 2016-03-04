@@ -23,6 +23,8 @@ CMMapLauncher currently knows how to show directions in the following mapping ap
 * The Transit App &mdash; `CMMapAppTheTransitApp`
 * Waze &mdash; `CMMapAppWaze`
 * Yandex Navigator &mdash; `CMMapAppYandex`
+* Uber &mdash; `CMMapAppUber`
+* TomTom &mdash; `CMMapAppTomTom`
 
 If you know of other direction-providing apps that expose a URL scheme for launching from other apps, this project wants to incorporate them!  Pull requests and issues providing URL schemes are encouraged.
 
