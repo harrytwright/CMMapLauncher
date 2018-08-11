@@ -30,6 +30,7 @@
 		8F3838DA211F90EF00EBD594 /* CMConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMConstants.h; sourceTree = "<group>"; };
 		8F3838DB211F90EF00EBD594 /* CMConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMConstants.m; sourceTree = "<group>"; };
 		8F3838DD211F993100EBD594 /* CMMapLauncher.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMMapLauncher.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8F3838DE211F9B2600EBD594 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C819DB21210F4AF500AA30D3 /* libCMMapLauncher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCMMapLauncher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C819DB24210F4AF500AA30D3 /* CMMapLauncher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMMapLauncher.h; sourceTree = "<group>"; };
 		C819DB25210F4AF500AA30D3 /* CMMapLauncher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMMapLauncher.m; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				8F3838DD211F993100EBD594 /* CMMapLauncher.podspec */,
+				8F3838DE211F9B2600EBD594 /* README.md */,
 				C819DB23210F4AF500AA30D3 /* CMMapLauncher */,
 				C819DB22210F4AF500AA30D3 /* Products */,
 			);

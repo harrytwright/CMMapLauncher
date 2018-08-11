@@ -14,7 +14,7 @@
 // This enumeration identifies the mapping apps
 // that this launcher knows how to support.
 typedef NS_ENUM(NSInteger, CMMapApp) {
-    CMMapAppAppleMaps,  // Preinstalled Apple Maps
+    CMMapAppAppleMaps,      // Preinstalled Apple Maps
     CMMapAppCitymapper,     // Citymapper
     CMMapAppGoogleMaps,     // Standalone Google Maps App
     CMMapAppNavigon,        // Navigon
