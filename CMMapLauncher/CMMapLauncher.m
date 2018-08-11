@@ -86,6 +86,8 @@ static BOOL debugEnabled;
 
 + (NSString*)urlPrefixForMapApp:(CMMapApp)mapApp {
     switch (mapApp) {
+        case CMMapAppAppleMaps:
+            return nil;
         case CMMapAppCitymapper:
             return @"citymapper://";
         case CMMapAppGoogleMaps:
@@ -108,8 +110,6 @@ static BOOL debugEnabled;
             return @"here-route://";
         case CMMapAppMoovit:
             return @"moovit://";
-        default:
-            return nil;
     }
 }
 
@@ -239,6 +239,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
             } else {
                 [NSException exceptionWithName:NSGenericException reason:@"Invalid iOS, not supporting iOS 9.3 or less" userInfo:NULL];
             }
+            break;
         }
         case CMMapAppGoogleMaps:
         {
@@ -258,6 +259,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppCitymapper:
         {
@@ -288,6 +290,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppTheTransitApp:
         {
@@ -308,6 +311,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppNavigon:
         {
@@ -327,6 +331,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppWaze:
         {
@@ -339,7 +344,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
-
+            break;
         }
         case CMMapAppYandex:
         {
@@ -360,6 +365,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppUber:
         {
@@ -387,6 +393,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppTomTom:
         {
@@ -400,6 +407,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppSygic:
         {
@@ -415,6 +423,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
         case CMMapAppHereMaps:
         {
@@ -448,7 +457,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
-
+            break;
         }
         case CMMapAppMoovit:
         {
@@ -476,6 +485,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
 
             [self logDebugURI:url];
             OPEN_URL_OR_HANDLE_ERROR(url)
+            break;
         }
     }
 }
