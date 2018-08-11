@@ -17,9 +17,12 @@ Then, to launch into directions in that app:
 
 ```objectivec
 CLLocationCoordinate2D bigBen = CLLocationCoordinate2DMake(51.500755, -0.124626);
-[CMMapLauncher launchApp:CMMapAppCitymapper
-         forDirectionsTo:[CMMapPoint mapPointWithName:@"Big Ben" coordinate:bigBen]]
-                 handler:NULL;
+[CMMapLauncher launchApp:CMMapAppAppleMaps 
+         forDirectionsTo:[CMMapPoint mapPointWithName:@"Big Ben" coordinate:bigBen] 
+      completionHandler:^(BOOL success, NSError *error) 
+{
+    ...
+}];
 ```
 
 ```swift
