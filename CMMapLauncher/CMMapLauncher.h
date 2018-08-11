@@ -35,36 +35,33 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+#import "CMMapApp.h"
+#import "CMConstants.h"
+#import "CMMapPoint.h"
+
 @class CMMapPoint;
+
+NS_ASSUME_NONNULL_BEGIN
 
 ///---------------------------
 /// CMMapLauncher (main class)
 ///---------------------------
 
-// This enumeration identifies the mapping apps
-// that this launcher knows how to support.
-typedef NS_ENUM(NSUInteger, CMMapApp) {
-    CMMapAppAppleMaps = 0,  // Preinstalled Apple Maps
-    CMMapAppCitymapper,     // Citymapper
-    CMMapAppGoogleMaps,     // Standalone Google Maps App
-    CMMapAppNavigon,        // Navigon
-    CMMapAppTheTransitApp,  // The Transit App
-    CMMapAppWaze,           // Waze
-    CMMapAppYandex,         // Yandex Navigator
-    CMMapAppUber,           // Uber
-    CMMapAppTomTom,         // TomTom
-    CMMapAppSygic,          // Sygic
-    CMMapAppHereMaps,       // HERE Maps
-    CMMapAppMoovit          // Moovit
-    
-};
+/**
+ An updated completion handler from the URL opening method in UIApplication
+ */
+typedef void(^CMMapLauncherURLHandler)(BOOL success, NSError *_Nullable error);
 
+/**
+ CMMapLauncher allows for the launch of Navigation apps easier.
+ */
+NS_SWIFT_NAME(MapLauncher)
 @interface CMMapLauncher : NSObject
 
 /**
  Enables debug logging which logs resulting URL scheme to console
  */
-+ (void)enableDebugLogging;
++ (void)enableLogging;
 
 /**
  Determines whether the given mapping app is installed.
@@ -79,60 +76,63 @@ typedef NS_ENUM(NSUInteger, CMMapApp) {
  Launches the specified mapping application with directions
  from the user's current location to the specified endpoint.
 
- @param mapApp An enumeration value identifying a mapping application.
- @param end The destination of the desired directions.
-
- @return YES if the mapping app could be launched, NO otherwise.
+ @param mapApp  An enumeration value identifying a mapping application.
+ @param end     The destination of the desired directions.
+ @param handler The return from +[UIApplication canOpenURL]
  */
-+ (BOOL)launchMapApp:(CMMapApp)mapApp
-     forDirectionsTo:(CMMapPoint *)end;
-
-
-/**
- Launches the specified mapping application with directions
- from the user's current location to the specified endpoint
- and using the specified transport mode.
- 
- @param mapApp An enumeration value identifying a mapping application.
- @param end The destination of the desired directions.
- @param directionsMode transport mode to use when getting directions.
- 
- @return YES if the mapping app could be launched, NO otherwise.
- */
-+ (BOOL)launchMapApp:(CMMapApp)mapApp
-     forDirectionsTo:(CMMapPoint *)end
-      directionsMode:(NSString *)directionsMode;
++ (void)launchApp:(CMMapApp)mapApp
+  forDirectionsTo:(CMMapPoint *)end
+completionHandler:(CMMapLauncherURLHandler __nullable)handler
+NS_SWIFT_NAME(launch(_:to:completionHandler:));
 
 /**
  Launches the specified mapping application with directions
  between the two specified endpoints.
 
- @param mapApp An enumeration value identifying a mapping application.
- @param start The starting point of the desired directions.
- @param end The destination of the desired directions.
-
- @return YES if the mapping app could be launched, NO otherwise.
+ @param mapApp  An enumeration value identifying a mapping application.
+ @param start   The starting point of the desired directions.
+ @param end     The destination of the desired directions.
+ @param handler The return from +[UIApplication canOpenURL]
  */
-+ (BOOL)launchMapApp:(CMMapApp)mapApp
-   forDirectionsFrom:(CMMapPoint *)start
-                  to:(CMMapPoint *)end;
++ (void)launchApp:(CMMapApp)mapApp
+forDirectionsFrom:(CMMapPoint *)start
+               to:(CMMapPoint *)end
+completionHandler:(CMMapLauncherURLHandler __nullable)handler
+NS_SWIFT_NAME(launch(_:from:to:completionHandler:));
+
+/**
+ Launches the specified mapping application with directions
+ from the user's current location to the specified endpoint
+ and using the specified transport mode.
+
+ @param mapApp          An enumeration value identifying a mapping application.
+ @param end             The destination of the desired directions.
+ @param directionsMode  The mode of transport required using the CMDirectionMode enumeration
+ @param handler         The return from +[UIApplication canOpenURL]
+ */
++ (void)launchApp:(CMMapApp)mapApp
+  forDirectionsTo:(CMMapPoint *)end
+   directionsMode:(CMDirectionMode)directionsMode
+completionHandler:(CMMapLauncherURLHandler __nullable)handler
+NS_SWIFT_NAME(launch(_:to:by:completionHandler:));
 
 /**
  Launches the specified mapping application with directions
  between the two specified endpoints
  and using the specified transport mode.
- 
- @param mapApp An enumeration value identifying a mapping application.
- @param start The starting point of the desired directions.
- @param end The destination of the desired directions.
- @param directionsMode transport mode to use when getting directions.
 
- @return YES if the mapping app could be launched, NO otherwise.
+ @param mapApp          An enumeration value identifying a mapping application.
+ @param start           The starting point of the desired directions.
+ @param end             The destination of the desired directions.
+ @param directionsMode  Transport mode to use when getting directions.
+ @param handler         The return from +[UIApplication canOpenURL]
  */
-+ (BOOL)launchMapApp:(CMMapApp)mapApp
-   forDirectionsFrom:(CMMapPoint *)start
-                  to:(CMMapPoint *)end
-      directionsMode:(NSString *)directionsMode;
++ (void)launchApp:(CMMapApp)mapApp
+forDirectionsFrom:(CMMapPoint *)start
+               to:(CMMapPoint *)end
+   directionsMode:(CMDirectionMode)directionsMode
+completionHandler:(CMMapLauncherURLHandler __nullable)handler
+NS_SWIFT_NAME(launch(_:from:to:by:completionHandler:));
 
 /**
  Launches the specified mapping application with directions
@@ -140,99 +140,21 @@ typedef NS_ENUM(NSUInteger, CMMapApp) {
  and using the specified transport mode
  and including app-specific extra parameters
 
- @param mapApp An enumeration value identifying a mapping application.
- @param start The starting point of the desired directions.
- @param end The destination of the desired directions.
- @param directionsMode transport mode to use when getting directions.
- @param extras key/value map of app-specific extra parameters to pass to launched app
-
- @return YES if the mapping app could be launched, NO otherwise.
+ @param mapApp          An enumeration value identifying a mapping application.
+ @param start           The starting point of the desired directions.
+ @param end             The destination of the desired directions.
+ @param directionsMode  Transport mode to use when getting directions.
+ @param extras          A key/value map of app-specific extra parameters to pass to launched app
+ @param handler         The return from +[UIApplication canOpenURL]
  */
-+ (BOOL)launchMapApp:(CMMapApp)mapApp
-   forDirectionsFrom:(CMMapPoint *)start
-                  to:(CMMapPoint *)end
-      directionsMode:(NSString *)directionsMode
-      extras:(NSDictionary *)extras;
++ (void)launchApp:(CMMapApp)mapApp
+forDirectionsFrom:(CMMapPoint *)start
+               to:(CMMapPoint *)end
+   directionsMode:(CMDirectionMode)directionsMode
+           extras:(NSDictionary<NSString *, id> * __nullable)extras
+completionHandler:(CMMapLauncherURLHandler __nullable)handler
+NS_SWIFT_NAME(launch(_:from:to:by:extras:completionHandler:));
 
 @end
 
-
-///--------------------------
-/// CMMapPoint (helper class)
-///--------------------------
-
-@interface CMMapPoint : NSObject
-
-/**
- Determines whether this map point represents the user's current location.
- */
-@property (nonatomic, assign) BOOL isCurrentLocation;
-
-/**
- The geographical coordinate of the map point.
- */
-@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-
-/**
- The user-visible name of the given map point (optional, may be nil).
- */
-@property (nonatomic, copy) NSString *name;
-
-/**
- The address of the given map point (optional, may be nil).
- */
-@property (nonatomic, copy) NSString *address;
-
-/**
- Gives an MKMapItem corresponding to this map point object.
- */
-@property (nonatomic, retain) MKMapItem *MKMapItem;
-
-/**
- Creates a new CMMapPoint that signifies the current location.
- */
-+ (CMMapPoint *)currentLocation;
-
-/**
- Creates a new CMMapPoint with the given geographical coordinate.
-
- @param coordinate The geographical coordinate of the new map point.
- */
-+ (CMMapPoint *)mapPointWithCoordinate:(CLLocationCoordinate2D)coordinate;
-
-/**
- Creates a new CMMapPoint with the given name and coordinate.
-
- @param name The user-visible name of the new map point.
- @param coordinate The geographical coordinate of the new map point.
- */
-+ (CMMapPoint *)mapPointWithName:(NSString *)name
-                      coordinate:(CLLocationCoordinate2D)coordinate;
-
-/**
- Creates a new CMMapPoint with the given name, address, and coordinate.
-
- @param name The user-visible name of the new map point.
- @param address The address string of the new map point.
- @param coordinate The geographical coordinate of the new map point.
- */
-+ (CMMapPoint *)mapPointWithName:(NSString *)name
-                         address:(NSString *)address
-                      coordinate:(CLLocationCoordinate2D)coordinate;
-
-/**
- Creates a new CMMapPoint with the given name, address, and coordinate.
-
- @param address The address string of the new map point.
- @param coordinate The geographical coordinate of the new map point.
- */
-+ (CMMapPoint *)mapPointWithAddress:(NSString *)address
-                         coordinate:(CLLocationCoordinate2D)coordinate;
-
-
-+ (CMMapPoint *)mapPointWithMapItem:(MKMapItem *)mapItem
-                               name:(NSString *)name
-                            address:(NSString *)address
-                         coordinate:(CLLocationCoordinate2D)coordinate;
-
-@end
+NS_ASSUME_NONNULL_END

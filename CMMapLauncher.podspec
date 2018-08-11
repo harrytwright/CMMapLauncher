@@ -7,7 +7,8 @@ Pod::Spec.new do |s|
   s.author       = 'Citymapper'
   s.platform     = :ios
   s.source       = { :git => "https://github.com/citymapper/CMMapLauncher.git", :tag => "1.1.0" }
-  s.source_files  = 'CMMapLauncher'
+  s.source_files  = 'CMMapLauncher/*.{h/m}'
+  s.ios.deployment_target  = '10.0'
   s.framework  = 'MapKit'
   s.requires_arc = true
 end
