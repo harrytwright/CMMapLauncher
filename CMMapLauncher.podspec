@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CMMapLauncher"
-  s.version      = "1.1.0"
+  s.version      = "2.0.0"
   s.summary      = "CMMapLauncher is a mini-library for iOS that makes it quick and easy to show directions in various mapping applications."
   s.homepage     = "https://github.com/citymapper/CMMapLauncher"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
