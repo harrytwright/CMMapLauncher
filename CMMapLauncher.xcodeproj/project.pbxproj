@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F3838DC211F90EF00EBD594 /* CMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3838DB211F90EF00EBD594 /* CMConstants.m */; };
-		8F8AAC50212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8AAC4F212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m */; };
-		C819DB26210F4AF500AA30D3 /* CMMapLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = C819DB25210F4AF500AA30D3 /* CMMapLauncher.m */; };
-		C819DB27210F4AF500AA30D3 /* CMMapLauncher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C819DB24210F4AF500AA30D3 /* CMMapLauncher.h */; };
-		C84FA068210F4E7C00A029B8 /* CMMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C84FA067210F4E7C00A029B8 /* CMMapPoint.m */; };
+		8F8EBFEB21209171005A9817 /* CMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8EBFE121209171005A9817 /* CMConstants.m */; };
+		8F8EBFEC21209171005A9817 /* CMMapLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8EBFE421209171005A9817 /* CMMapLauncher.m */; };
+		8F8EBFED21209171005A9817 /* CMMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8EBFE721209171005A9817 /* CMMapPoint.m */; };
+		8F8EBFEE21209171005A9817 /* CMMapLauncher+UI_Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8EBFEA21209171005A9817 /* CMMapLauncher+UI_Tools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,26 +20,27 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				C819DB27210F4AF500AA30D3 /* CMMapLauncher.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8F3838DA211F90EF00EBD594 /* CMConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMConstants.h; sourceTree = "<group>"; };
-		8F3838DB211F90EF00EBD594 /* CMConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMConstants.m; sourceTree = "<group>"; };
 		8F3838DD211F993100EBD594 /* CMMapLauncher.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMMapLauncher.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8F3838DE211F9B2600EBD594 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8F8AAC4E212071C200CCDAF2 /* CMMapLauncher+UI_Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMMapLauncher+UI_Tools.h"; sourceTree = "<group>"; };
-		8F8AAC4F212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CMMapLauncher+UI_Tools.m"; sourceTree = "<group>"; };
-		8F8EBFDC212086D9005A9817 /* CMMapLauncher+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMMapLauncher+Private.h"; sourceTree = "<group>"; };
+		8F8EBFE021209171005A9817 /* CMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMConstants.h; sourceTree = "<group>"; };
+		8F8EBFE121209171005A9817 /* CMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMConstants.m; sourceTree = "<group>"; };
+		8F8EBFE221209171005A9817 /* CMMapApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMapApp.h; sourceTree = "<group>"; };
+		8F8EBFE321209171005A9817 /* CMMapLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMapLauncher.h; sourceTree = "<group>"; };
+		8F8EBFE421209171005A9817 /* CMMapLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMapLauncher.m; sourceTree = "<group>"; };
+		8F8EBFE521209171005A9817 /* CMMapLauncher_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMapLauncher_Private.h; sourceTree = "<group>"; };
+		8F8EBFE621209171005A9817 /* CMMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMapPoint.h; sourceTree = "<group>"; };
+		8F8EBFE721209171005A9817 /* CMMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMapPoint.m; sourceTree = "<group>"; };
+		8F8EBFE921209171005A9817 /* CMMapLauncher+UI_Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMMapLauncher+UI_Tools.h"; sourceTree = "<group>"; };
+		8F8EBFEA21209171005A9817 /* CMMapLauncher+UI_Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMapLauncher+UI_Tools.m"; sourceTree = "<group>"; };
+		8F8EBFEF21209183005A9817 /* Launcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Launcher.h; sourceTree = "<group>"; };
+		8F8EBFF12120938D005A9817 /* UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
 		C819DB21210F4AF500AA30D3 /* libCMMapLauncher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCMMapLauncher.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C819DB24210F4AF500AA30D3 /* CMMapLauncher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMMapLauncher.h; sourceTree = "<group>"; };
-		C819DB25210F4AF500AA30D3 /* CMMapLauncher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMMapLauncher.m; sourceTree = "<group>"; };
-		C84FA065210F4BE300A029B8 /* CMMapApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMMapApp.h; sourceTree = "<group>"; };
-		C84FA066210F4E7C00A029B8 /* CMMapPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMMapPoint.h; sourceTree = "<group>"; };
-		C84FA067210F4E7C00A029B8 /* CMMapPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMMapPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +54,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F8EBFDE21209171005A9817 /* CMMapLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				8F8EBFDF21209171005A9817 /* Launcher */,
+				8F8EBFE821209171005A9817 /* UI */,
+				8F8EBFEF21209183005A9817 /* Launcher.h */,
+				8F8EBFF12120938D005A9817 /* UI.h */,
+			);
+			path = CMMapLauncher;
+			sourceTree = "<group>";
+		};
+		8F8EBFDF21209171005A9817 /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				8F8EBFE021209171005A9817 /* CMConstants.h */,
+				8F8EBFE121209171005A9817 /* CMConstants.m */,
+				8F8EBFE221209171005A9817 /* CMMapApp.h */,
+				8F8EBFE321209171005A9817 /* CMMapLauncher.h */,
+				8F8EBFE421209171005A9817 /* CMMapLauncher.m */,
+				8F8EBFE521209171005A9817 /* CMMapLauncher_Private.h */,
+				8F8EBFE621209171005A9817 /* CMMapPoint.h */,
+				8F8EBFE721209171005A9817 /* CMMapPoint.m */,
+			);
+			path = Launcher;
+			sourceTree = "<group>";
+		};
+		8F8EBFE821209171005A9817 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8F8EBFE921209171005A9817 /* CMMapLauncher+UI_Tools.h */,
+				8F8EBFEA21209171005A9817 /* CMMapLauncher+UI_Tools.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		C819DB18210F4AF500AA30D3 = {
 			isa = PBXGroup;
 			children = (
 				8F3838DD211F993100EBD594 /* CMMapLauncher.podspec */,
 				8F3838DE211F9B2600EBD594 /* README.md */,
-				C819DB23210F4AF500AA30D3 /* CMMapLauncher */,
+				8F8EBFDE21209171005A9817 /* CMMapLauncher */,
 				C819DB22210F4AF500AA30D3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,23 +105,6 @@
 				C819DB21210F4AF500AA30D3 /* libCMMapLauncher.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C819DB23210F4AF500AA30D3 /* CMMapLauncher */ = {
-			isa = PBXGroup;
-			children = (
-				C84FA065210F4BE300A029B8 /* CMMapApp.h */,
-				8F3838DA211F90EF00EBD594 /* CMConstants.h */,
-				8F3838DB211F90EF00EBD594 /* CMConstants.m */,
-				C819DB24210F4AF500AA30D3 /* CMMapLauncher.h */,
-				8F8EBFDC212086D9005A9817 /* CMMapLauncher+Private.h */,
-				C819DB25210F4AF500AA30D3 /* CMMapLauncher.m */,
-				C84FA066210F4E7C00A029B8 /* CMMapPoint.h */,
-				C84FA067210F4E7C00A029B8 /* CMMapPoint.m */,
-				8F8AAC4E212071C200CCDAF2 /* CMMapLauncher+UI_Tools.h */,
-				8F8AAC4F212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m */,
-			);
-			path = CMMapLauncher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,10 +163,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F8AAC50212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m in Sources */,
-				C819DB26210F4AF500AA30D3 /* CMMapLauncher.m in Sources */,
-				C84FA068210F4E7C00A029B8 /* CMMapPoint.m in Sources */,
-				8F3838DC211F90EF00EBD594 /* CMConstants.m in Sources */,
+				8F8EBFEE21209171005A9817 /* CMMapLauncher+UI_Tools.m in Sources */,
+				8F8EBFEC21209171005A9817 /* CMMapLauncher.m in Sources */,
+				8F8EBFEB21209171005A9817 /* CMConstants.m in Sources */,
+				8F8EBFED21209171005A9817 /* CMMapPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

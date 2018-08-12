@@ -39,6 +39,10 @@
 #import "CMConstants.h"
 #import "CMMapPoint.h"
 
+//#if __has_include("CMMapLauncher+UI_Tools.h")
+//#import "CMMapLauncher+UI_Tools.h"
+//#endif
+
 @class CMMapPoint;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -10,7 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
 @interface CMMapLauncher ()
 + (NSString*)urlPrefixForMapApp:(CMMapApp)mapApp;
 + (BOOL)isMapAppInstalled:(CMMapApp)mapApp withError:(NSError **)error;

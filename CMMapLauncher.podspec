@@ -6,9 +6,29 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = 'Citymapper'
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/citymapper/CMMapLauncher.git", :tag => "1.1.0" }
-  s.source_files  = 'CMMapLauncher'
-  s.ios.deployment_target  = '10.0'
-  s.framework  = 'MapKit'
-  s.requires_arc = true
+  s.source       = { :git => "https://github.com/citymapper/CMMapLauncher.git", :tag => "#{s.version}" }
+
+  # Platform setup
+  s.requires_arc            = true
+  s.ios.deployment_target   = '10.0'
+
+  # Exclude optional UI modules
+  s.default_subspec = 'Core'
+
+  ### Subspecs
+
+  s.subspec 'Core' do |cs|
+      cs.dependency     'CMMapLauncher/Launcher'
+  end
+
+  s.subspec 'Launcher' do |ls|
+      ls.source_files   = 'CMMapLauncher/Launcher.h', 'CMMapLauncher/Launcher/**/*'
+      ls.framework      = 'MapKit'
+  end
+
+  s.subspec 'UI' do |us|
+      us.source_files   = 'CMMapLauncher/UI.h', 'CMMapLauncher/UI/**/*'
+      us.dependency     'CMMapLauncher/Core'
+  end
+
 end

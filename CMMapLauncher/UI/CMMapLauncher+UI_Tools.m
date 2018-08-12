@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "CMMapLauncher+UI_Tools.h"
-#import "CMMapLauncher+Private.h"
+#import "CMMapLauncher_Private.h"
 
 #define CREATE_ACTION(NAME, ...)\
 [UIAlertAction actionWithTitle:NAME style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) \

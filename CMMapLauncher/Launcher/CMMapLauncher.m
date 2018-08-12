@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 
 #import "CMMapLauncher.h"
-#import "CMMapLauncher+Private.h"
+#import "CMMapLauncher_Private.h"
 
 #pragma mark Defines
 #define OPEN_URL_OR_HANDLE_ERROR(url) \
