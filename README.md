@@ -1,5 +1,4 @@
 # CMMapLauncher
-=============
 
 > The orginal code was produced by [Citymapper](https://github.com/citymapper/CMMapLauncher) but this fork is an update on [dpa99c's fork](https://github.com/dpa99c/CMMapLauncher) updating the code base post iOS 10 & adding Cocoapod support with UI helpers
 
