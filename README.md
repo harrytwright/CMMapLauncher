@@ -1,8 +1,13 @@
-CMMapLauncher
+# CMMapLauncher
 =============
+
 > The orginal code was produced by [Citymapper](https://github.com/citymapper/CMMapLauncher) but this fork is an update on [dpa99c's fork](https://github.com/dpa99c/CMMapLauncher) updating the code base post iOS 10 & adding Cocoapod support with UI helpers
 
-CMMapLauncher is a mini-library for iOS that makes it quick and easy to show directions in various mapping applications.  To use it, just add the following to your podfile:
+CMMapLauncher is a mini-library for iOS that makes it quick and easy to show directions in various mapping applications.  
+
+## Installation
+
+To use it, just add the following to your podfile:
 
 ```ruby
 pod 'CMMapLauncher', :git => 'https://github.com/harrytwright/CMMapLauncher.git'
@@ -16,6 +21,8 @@ Don't forget to add the following to your info.plist:
     <string>*url_scheme*</string>
 </array>
 ```
+
+## Usage
 
 To check whether one of the supported mapping apps is present on the user's device:
 
