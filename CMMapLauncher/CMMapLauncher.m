@@ -25,7 +25,7 @@
 #pragma mark Defines
 #define OPEN_URL_OR_HANDLE_ERROR(url) \
 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) { \
-    if (handler) handler(success, success ? NULL : CMMakeError(CMErrorAppCouldNotBeOpened, CMErrorAppCouldNotBeOpenedReason)); \
+if (handler) handler(success, success ? NULL : CMMakeError(CMErrorAppCouldNotBeOpened, CMErrorAppCouldNotBeOpenedReason)); \
 }];
 
 #define URL_FOR_APP \
@@ -47,7 +47,14 @@
 #pragma mark - Private Method defines
 
 NSError *CMMakeError(CMError error, NSString *reason) {
-    return [NSError errorWithDomain:CMErrorDomain code:error userInfo:@{NSLocalizedDescriptionKey:reason}];
+    NSMutableDictionary<NSErrorUserInfoKey, id> *userInfo = [NSMutableDictionary new];
+    [userInfo setObject:reason forKey:NSLocalizedDescriptionKey];
+
+    if (error == CMErrorAppIsNotInstalled) {
+        [userInfo setObject:@"No application in the Launch Services database matches the input criteria." forKey:NSUnderlyingErrorKey];
+    }
+
+    return [NSError errorWithDomain:CMErrorDomain code:error userInfo:userInfo];
 }
 
 @interface CMMapLauncher ()
@@ -116,7 +123,7 @@ static BOOL debugEnabled;
 + (NSString*)urlEncode:(NSString*)queryParam {
     // Encode all the reserved characters, per RFC 3986
     // (<http://www.ietf.org/rfc/rfc3986.txt>)
-//    NSString* newString = (__bridge_transfer NSString*)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)queryParam, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    //    NSString* newString = (__bridge_transfer NSString*)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)queryParam, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
 
     NSCharacterSet *escapes = [NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"];
     NSString *newString = [queryParam stringByAddingPercentEncodingWithAllowedCharacters:escapes];
@@ -155,19 +162,70 @@ static BOOL debugEnabled;
     return [NSString stringWithFormat:@"%f,%f", mapPoint.coordinate.latitude, mapPoint.coordinate.longitude];
 }
 
-#pragma mark - CMMapLauncher Public Methods
+typedef NS_ENUM(NSInteger, CMMapLauncherInstalledState) {
+    CMMapLauncherInstalledStateUninstalled,
+    CMMapLauncherInstalledStateUnknown,
+    CMMapLauncherInstalledStateInstalled,
+};
 
-+ (BOOL)isMapAppInstalled:(CMMapApp)mapApp {
+/**
+ A state checker for apps, just keeps the code cleaner
+ */
++ (CMMapLauncherInstalledState)getStateOfMapApp:(CMMapApp)mapApp {
     if (mapApp == CMMapAppAppleMaps) {
-        return YES;
+        return CMMapLauncherInstalledStateInstalled;
     }
 
     NSString* urlPrefix = [CMMapLauncher urlPrefixForMapApp:mapApp];
     if (!urlPrefix) {
-        return NO;
+        [NSException raise:NSInvalidArgumentException format:@"This method was passed an invalid map application"];
     }
 
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlPrefix]];
+    NSArray<NSString *>* LSApplicationQueriesSchemes = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"LSApplicationQueriesSchemes"];
+    if (!LSApplicationQueriesSchemes || ![LSApplicationQueriesSchemes containsObject:[urlPrefix stringByReplacingOccurrencesOfString:@"://" withString:@""]]) {
+        return CMMapLauncherInstalledStateUnknown;
+    }
+
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlPrefix]] ? CMMapLauncherInstalledStateInstalled : CMMapLauncherInstalledStateUninstalled;
+}
+
+/**
+ This method just allows me to produce the correct end result error for the user.
+ */
++ (BOOL)isMapAppInstalled:(CMMapApp)mapApp withError:(NSError **)error {
+    CMMapLauncherInstalledState state = [self getStateOfMapApp:mapApp];
+
+    switch (state) {
+        case CMMapLauncherInstalledStateInstalled:
+        {
+            [self logDebug:[NSString stringWithFormat:@"%@ is installed on the device", [CMMapLauncher urlPrefixForMapApp:mapApp]]];
+            return YES;
+            break;
+        }
+        case CMMapLauncherInstalledStateUninstalled:
+        {
+            [self logDebug:[NSString stringWithFormat:@"%@ is not installed on the device", [CMMapLauncher urlPrefixForMapApp:mapApp]]];
+            return NO;
+            break;
+        }
+        case CMMapLauncherInstalledStateUnknown:
+        {
+            NSString* urlPrefix = [CMMapLauncher urlPrefixForMapApp:mapApp];
+            NSString *errorMessage = [NSString stringWithFormat:@"This app is not allowed to query for scheme \"%@\"", urlPrefix];
+
+            [self logDebug:errorMessage];
+            if (error) { *error = CMMakeError(CMErrorLSApplicationQueriesSchemesIsMissing, errorMessage); }
+
+            return NO;
+            break;
+        }
+    }
+}
+
+#pragma mark - CMMapLauncher Public Methods
+
++ (BOOL)isMapAppInstalled:(CMMapApp)mapApp {
+    return [CMMapLauncher isMapAppInstalled:mapApp withError:NULL];
 }
 
 + (void)launchApp:(CMMapApp)mapApp
@@ -210,8 +268,9 @@ forDirectionsFrom:(CMMapPoint *)start
            extras:(NSDictionary<NSString *, id> *)extras
 completionHandler:(CMMapLauncherURLHandler)handler
 {
-    if (![CMMapLauncher isMapAppInstalled:mapApp]) {
-        handler(NO, CMMakeError(CMErrorAppIsNotInstalled, CMMapLauncherMissingAppError));
+    NSError *error;
+    if (![CMMapLauncher isMapAppInstalled:mapApp withError:&error]) {
+        handler(NO, (error != NULL) ? error : CMMakeError(CMErrorAppIsNotInstalled, CMMapLauncherMissingAppError));
         return;
     }
 
@@ -351,12 +410,12 @@ completionHandler:(CMMapLauncherURLHandler)handler
             NSMutableString* url = nil;
             if (start.isCurrentLocation) {
                 url = [NSMutableString stringWithFormat:@"%@build_route_on_map?lat_to=%f&lon_to=%f",
-                    [self urlPrefixForMapApp:CMMapAppYandex],
-                    end.coordinate.latitude, end.coordinate.longitude];
+                       [self urlPrefixForMapApp:CMMapAppYandex],
+                       end.coordinate.latitude, end.coordinate.longitude];
             } else {
                 url = [NSMutableString stringWithFormat:@"%@build_route_on_map?lat_to=%f&lon_to=%f&lat_from=%f&lon_from=%f",
-                    [self urlPrefixForMapApp:CMMapAppYandex],
-                    end.coordinate.latitude, end.coordinate.longitude, start.coordinate.latitude, start.coordinate.longitude];
+                       [self urlPrefixForMapApp:CMMapAppYandex],
+                       end.coordinate.latitude, end.coordinate.longitude, start.coordinate.latitude, start.coordinate.longitude];
             }
 
             if (extras) {
@@ -469,7 +528,7 @@ completionHandler:(CMMapLauncherURLHandler)handler
                 [url appendFormat:@"&dest_name=%@", AddPercentEscape(end.name)];
             }
 
-//            NSMutableString* startParam;
+            //            NSMutableString* startParam;
             if (!start.isCurrentLocation) {
                 [url appendFormat:@"&orig_lat=%f&orig_lon=%f",
                  start.coordinate.latitude, start.coordinate.longitude];

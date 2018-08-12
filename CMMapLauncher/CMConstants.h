@@ -38,6 +38,7 @@ extern NSString * const CMErrorDomain;
 typedef CM_ERROR_ENUM(NSInteger, CMError, CMErrorDomain) {
     CMErrorAppIsNotInstalled = 404,
     CMErrorAppCouldNotBeOpened = 403,
+    CMErrorLSApplicationQueriesSchemesIsMissing = 400,
     CMErrorMKMapItemMethodReturnedFalse = 401,
 } NS_SWIFT_NAME(MapLauncher.Error);
 
