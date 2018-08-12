@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import "CMMapLauncher.h"
+#import "CMMapLauncher+Private.h"
 
 #pragma mark Defines
 #define OPEN_URL_OR_HANDLE_ERROR(url) \
@@ -94,7 +95,7 @@ static BOOL debugEnabled;
 + (NSString*)urlPrefixForMapApp:(CMMapApp)mapApp {
     switch (mapApp) {
         case CMMapAppAppleMaps:
-            return nil;
+            return @"apple";
         case CMMapAppCitymapper:
             return @"citymapper://";
         case CMMapAppGoogleMaps:
@@ -177,7 +178,7 @@ typedef NS_ENUM(NSInteger, CMMapLauncherInstalledState) {
     }
 
     NSString* urlPrefix = [CMMapLauncher urlPrefixForMapApp:mapApp];
-    if (!urlPrefix) {
+    if (!urlPrefix || [urlPrefix isEqualToString:@"apple"]) {
         [NSException raise:NSInvalidArgumentException format:@"This method was passed an invalid map application"];
     }
 

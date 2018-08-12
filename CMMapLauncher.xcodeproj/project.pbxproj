@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F3838DC211F90EF00EBD594 /* CMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3838DB211F90EF00EBD594 /* CMConstants.m */; };
+		8F8AAC50212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8AAC4F212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m */; };
 		C819DB26210F4AF500AA30D3 /* CMMapLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = C819DB25210F4AF500AA30D3 /* CMMapLauncher.m */; };
 		C819DB27210F4AF500AA30D3 /* CMMapLauncher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C819DB24210F4AF500AA30D3 /* CMMapLauncher.h */; };
 		C84FA068210F4E7C00A029B8 /* CMMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C84FA067210F4E7C00A029B8 /* CMMapPoint.m */; };
@@ -31,6 +32,9 @@
 		8F3838DB211F90EF00EBD594 /* CMConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMConstants.m; sourceTree = "<group>"; };
 		8F3838DD211F993100EBD594 /* CMMapLauncher.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMMapLauncher.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8F3838DE211F9B2600EBD594 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8F8AAC4E212071C200CCDAF2 /* CMMapLauncher+UI_Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMMapLauncher+UI_Tools.h"; sourceTree = "<group>"; };
+		8F8AAC4F212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CMMapLauncher+UI_Tools.m"; sourceTree = "<group>"; };
+		8F8EBFDC212086D9005A9817 /* CMMapLauncher+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMMapLauncher+Private.h"; sourceTree = "<group>"; };
 		C819DB21210F4AF500AA30D3 /* libCMMapLauncher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCMMapLauncher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C819DB24210F4AF500AA30D3 /* CMMapLauncher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMMapLauncher.h; sourceTree = "<group>"; };
 		C819DB25210F4AF500AA30D3 /* CMMapLauncher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMMapLauncher.m; sourceTree = "<group>"; };
@@ -75,9 +79,12 @@
 				8F3838DA211F90EF00EBD594 /* CMConstants.h */,
 				8F3838DB211F90EF00EBD594 /* CMConstants.m */,
 				C819DB24210F4AF500AA30D3 /* CMMapLauncher.h */,
+				8F8EBFDC212086D9005A9817 /* CMMapLauncher+Private.h */,
 				C819DB25210F4AF500AA30D3 /* CMMapLauncher.m */,
 				C84FA066210F4E7C00A029B8 /* CMMapPoint.h */,
 				C84FA067210F4E7C00A029B8 /* CMMapPoint.m */,
+				8F8AAC4E212071C200CCDAF2 /* CMMapLauncher+UI_Tools.h */,
+				8F8AAC4F212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m */,
 			);
 			path = CMMapLauncher;
 			sourceTree = "<group>";
@@ -138,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F8AAC50212071C200CCDAF2 /* CMMapLauncher+UI_Tools.m in Sources */,
 				C819DB26210F4AF500AA30D3 /* CMMapLauncher.m in Sources */,
 				C84FA068210F4E7C00A029B8 /* CMMapPoint.m in Sources */,
 				8F3838DC211F90EF00EBD594 /* CMConstants.m in Sources */,

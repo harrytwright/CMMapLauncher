@@ -56,7 +56,7 @@ typedef void(^CMMapLauncherURLHandler)(BOOL success, NSError *_Nullable error);
  CMMapLauncher allows for the launch of Navigation apps easier.
  */
 NS_SWIFT_NAME(MapLauncher)
-@interface CMMapLauncher : NSObject
+@interface CMMapLauncher : NSProxy
 
 /**
  Enables debug logging which logs resulting URL scheme to console
